@@ -29,6 +29,7 @@ const questions = [
     name: "isSpecial",
   },
 ];
+
 // declare retry question
 const retryQuestion = {
   type: "confirm",
@@ -59,16 +60,16 @@ const start = async () => {
     if (isValid) {
       // if answer isValid generate password
       const password = generatePassword(answers);
+
       console.log(`Your random password is ${password}`);
     } else {
       console.log(
-        "Please ensure you select a minimum of 2 criteria and a password length greater than 8 characters"
+        "\n\nPlease ensure you select a minimum of 2 criteria and a password length greater than 8 characters\n\n"
       );
+
       // else prompt retry question
       const retryAnswer = await inquirer.prompt(retryQuestion);
-      if (retryAnswer.retry) {
-        inProgress = true;
-      } else {
+      if (!retryAnswer.retry) {
         inProgress = false;
       }
     }
