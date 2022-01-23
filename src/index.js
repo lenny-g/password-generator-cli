@@ -39,7 +39,24 @@ const retryQuestion = {
 
 // declare verification function
 const validateAnswers = (answers) => {
-  return false;
+  if (answers.passwordLength < 10) {
+    return false;
+  }
+
+  const acceptedChoices = [
+    answers.isLowerCase,
+    answers.isUpperCase,
+    answers.isNumeric,
+    answers.isSpecial,
+  ].filter((choice) => {
+    return choice;
+  });
+
+  if (acceptedChoices.length < 2) {
+    return false;
+  }
+
+  return true;
 };
 
 const generatePassword = (answers) => {
@@ -62,6 +79,7 @@ const start = async () => {
       const password = generatePassword(answers);
 
       console.log(`Your random password is ${password}`);
+      inProgress = false;
     } else {
       console.log(
         "\n\nPlease ensure you select a minimum of 2 criteria and a password length greater than 8 characters\n\n"
