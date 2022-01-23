@@ -1,0 +1,24 @@
+{
+  "name": "password-generator-cli",
+  "version": "1.0.0",
+  "description": "Strong random password generator using inquirer",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node src/index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/lenny-g/password-generator-cli.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/lenny-g/password-generator-cli/issues"
+  },
+  "homepage": "https://github.com/lenny-g/password-generator-cli#readme",
+  "dependencies": {
+    "inquirer": "^8.2.0"
+  }
+}
