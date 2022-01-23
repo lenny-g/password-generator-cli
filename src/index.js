@@ -59,8 +59,55 @@ const validateAnswers = (answers) => {
   return true;
 };
 
+const generateRandomLowerCaseChar = () => {
+  const lowerCaseChar = [..."abcdefghijklmnopqrstuvwxyz"];
+  const randomIndex = Math.floor(Math.random() * lowerCaseChar.length);
+  return lowerCaseChar[randomIndex];
+};
+
+const generateRandomUpperCaseChar = () => {
+  const upperCaseChar = [..."ABCDEFGHIJKLMNOPQRSTUVWXYZ"];
+  const randomIndex = Math.floor(Math.random() * upperCaseChar.length);
+  return upperCaseChar[randomIndex];
+};
+
+const generateRandomNumericChar = () => {
+  const numericChar = [..."0123456789"];
+  const randomIndex = Math.floor(Math.random() * numericChar.length);
+  return numericChar[randomIndex];
+};
+
+const generateRandomSpecialChar = () => {
+  const specialChar = [..."!£$%^&*()"];
+  const randomIndex = Math.floor(Math.random() * specialChar.length);
+  return specialChar[randomIndex];
+};
+
 const generatePassword = (answers) => {
-  return "password123!";
+  const choices = [];
+
+  if (answers.isLowerCase) {
+    choices.push(generateRandomLowerCaseChar);
+  }
+  if (answers.isUpperCase) {
+    choices.push(generateRandomUpperCaseChar);
+  }
+  if (answers.isNumeric) {
+    choices.push(generateRandomNumericChar);
+  }
+  if (answers.isSpecial) {
+    choices.push(generateRandomSpecialChar);
+  }
+
+  let password = "";
+
+  for (let i = 0; i < answers.passwordLength; i++) {
+    const randomIndex = Math.floor(Math.random() * choices.length);
+    const randomChar = choices[randomIndex]();
+    password += randomChar;
+  }
+
+  return password;
 };
 
 // declare async start function
